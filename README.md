@@ -2,9 +2,7 @@
 
 This is a Komodo mining pool based off of Node Open Mining Portal.
 
-Donations for development are greatly appreciated!
-  * BTC: 
-  * KMD: 
+Forked from https://github.com/joshuayabut/z-nomp
 
 #### Production Usage Notice
 This is beta software. All of the following are things that can change and break an existing Z-NOMP setup: functionality of any feature, structure of configuration files and structure of redis data. If you use this software in production then *DO NOT* pull new code straight into production usage because it can and often will break your setup and require you to tweak things like config files or redis data. *Only tagged releases are considered stable.*
