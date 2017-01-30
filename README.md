@@ -1,7 +1,5 @@
 # Komodo - Node Open Mining Portal
 
-**[Click here for the official - Zcash® and Zclassic Stratum Mining Pool Installation Guide](https://zdeveloper.org/wiki:z-nomp_install)**
-
 This is a Komodo mining pool based off of Node Open Mining Portal.
 
 Donations for development are greatly appreciated!
