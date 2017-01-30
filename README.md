@@ -2,24 +2,203 @@
 
 This is a Komodo mining pool based off of Node Open Mining Portal.
 
-Forked from https://github.com/joshuayabut/z-nomp
+This guide will install Komodod and KMD-Nomp.
 
-#### Production Usage Notice
-This is beta software. All of the following are things that can change and break an existing Z-NOMP setup: functionality of any feature, structure of configuration files and structure of redis data. If you use this software in production then *DO NOT* pull new code straight into production usage because it can and often will break your setup and require you to tweak things like config files or redis data. *Only tagged releases are considered stable.*
-
-#### Requirements
-* Coin daemon(s) ([https://github.com/jl777/komodo](https://github.com/jl777/komodo) and build latest version from source)
-* [Node.js](http://nodejs.org/) v7+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
-* [Redis](http://redis.io/) key-value store v2.6+ ([follow these instructions](http://redis.io/topics/quickstart))
-
-##### Seriously
-Those are legitimate requirements. If you use old versions of Node.js or Redis that may come with your system package manager then you will have problems. Follow the linked instructions to get the last stable versions.
+*This setup guide is intended for Ubuntu*
 
 
-[**Redis security warning**](http://redis.io/topics/security): be sure firewall access to redis - an easy way is to
-include `bind 127.0.0.1` in your `redis.conf` file. Also it's a good idea to learn about and understand software that
-you are using - a good place to start with redis is [data persistence](http://redis.io/topics/persistence).
+**Step 1. Update**
+```bash
+sudo apt-get update
+
+sudo apt-get upgrade
+```
+
+
+**Step 2. Install Dependencies for KMD**
+```bash
+sudo apt-get install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake libboost-all-dev libssl-dev libprotobuf-dev protobuf-compiler libqt4-dev libqrencode-dev libdb++-dev ntp ntpdate
+```
+
+
+**Step 3. Install Komodod**
+```bash
+git clone https://github.com/jl777/komodo
+cd komodo
+./zcutil/fetch-params.sh
+.zcutil/build.sh -j8   (replace 8 with number of CPU threads you want to use) (this will take some time.)
+```
+
+
+**Step 4. Create and Modify komodo.conf**
+```bash
+cd ..
+mkdir .komodo
+cd .komodo
+nano komodo.conf
+
+rpcuser=<yourRpcUserName>
+rpcpassword=<yourRpcPassword>
+rpcport=<YourRpcPort>
+txindex=1
+daemon=1
+server=1
+rpcallowip=127.0.0.1
+addnode=5.9.102.210
+addnode=78.47.196.146
+addnode=178.63.69.164
+addnode=88.198.65.74
+addnode=5.9.122.241
+addnode=144.76.94.38
+blocknotify=node /home/<user>/z-nomp/scripts/cli.js blocknotify komodo %s
+
+Ctrl+X, then Y to save. 
+```
+
+
+**Step 5. Install kmd-nomp**
+```bash
+cd ..
+sudo apt-get install libsodium-dev npm redis-server
+sudo npm install n -g
+sudo n stable
+git clone https://github.com/xrobesx/kmd-nomp
+cd kmd-nomp
+npm update
+npm install
+```
+*if libsodium package not found (ubuntu 14.04)*
+```bash
+cd ..
+git clone https://github.com/jedisct1/libsodium.git
+cd libsodium
+./configure
+./autogen.sh
+sudo make
+sudo make install
+```
+
+
+**Step 6. Restart Redis-server**
+```bash
+cd ..
+sudo service redis-server restart
+```
+
+
+**Step 7. Edit blockTemplate.js to remove this.rpcData.founders (from zcash)**
+```bash
+cd kmd-nomp/node_modules/stratum-pool/lib/
+nano blockTemplate.js
+```
+replace line 26 with
+```bash
+var blockReward = (this.rpcData.miner) * 100000000;
+```
+*if not done, it will generate an error*
 
 
 
-**For a setup guide, please visit: https://github.com/xRobeSx/kmd-gpu-mining **
+**Step 8. KMD-Nomp Site Config File**
+```bash
+cd ..
+cd kmd-nomp
+cp config_example.json config.json
+nano config.json
+
+"website": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 8080,
+        "stratumHost": "127.0.0.1",
+
+Ctrl+X, then Y to save.
+```
+
+**Step 9. Create KMD-Nomp Coin Config File**
+```bash
+cd kmd-nomp/coins
+nano komodo.json
+
+{
+    "name": "komodo",
+    "symbol": "KMD",
+    "algorithm": "equihash",
+    "payFoundersReward": false
+}
+```
+
+**Step 10. Create KMD-Nomp**
+```bash
+cd ..
+cd kmd-nomp/pool_configs
+cp zclassic.json komodo.json
+nano komodo.json
+
+enabled": true,
+    "coin": "komodo.json",
+ 
+    "address": "t1dfrrxCHek2ts987VpZsRmFKBvdcBJ1Cqd",
+    "_comment_address": "a transparent address to send coinbase rewards to and to transfer to zAddress.",
+ 
+    "zAddress": "ztqgT4xsouCyjHXrFtXnDVgtvPRmURMgHQw2gd39dLdtoYkmPACScHturZjqsNdAPtP6JCLaWmZmYDqbjCMRgdCfQ2vjY2K",
+    "_comment_zAddress": "a private address used to send coins to tAddress.",
+ 
+    "tAddress": "tmLqYHEnCiL4dpktEKdAKeRjPdkxNtJVWfb",
+    "_comment_tAddress": "transparent address used to send payments, make this a different address, otherwise payments will not send",
+
+"paymentProcessing": {
+        "enabled": false,
+        "paymentInterval": 30,
+        "minimumPayment": 1,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": <yourRpcport>,
+            "user": "<yourRpcUserName>",
+            "password": "<yourRpcPassword>"
+        }
+    },
+ 
+    "ports": {
+        "7777": {
+            "diff": 0.05,
+            "varDiff": {
+                "minDiff": 0.04,
+                "maxDiff": 16,
+                "targetTime": 15,
+                "retargetTime": 60,
+                "variancePercent": 30
+            }
+        }
+    },
+ 
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": <yourRpcport>,
+            "user": "<yourRpcUserName>",
+            "password": "<yourRpcPassword>"
+        }
+    ],
+```
+*Please note: You must change the first 3 addresses to your personal ones. Also change RPCport, RPCusername and RPCpassword to the ones set in your komodod komodo.conf file.*
+
+*Payment Processing is set to false. This is because we're mining locally, and not running it as an online pool.*
+
+
+
+**Step 11. Start KMD-Nomp**
+```bash
+cd ..
+cd kmd-nomp
+npm start
+```
+
+**Step 12. Check if KMD-Nomp is running**
+
+In a browser, type 127.0.0.1:PORT (you specified in config.json, default:8080) and the page should display. 
+
+
+
+
+*Forked from https://github.com/joshuayabut/z-nomp*
