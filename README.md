@@ -183,7 +183,7 @@ enabled": true,
 ```
 *Please note: You must change the first 3 addresses to your personal ones. Also change RPCport, RPCusername and RPCpassword to the ones set in your komodod komodo.conf file.*
 
-*Payment Processing is set to false. This is because we're mining locally, and not running it as an online pool.*
+*Payment Processing is set to false. This is because there are currently bugs. Also the guide is using it for local mining.*
 
 
 
@@ -196,7 +196,7 @@ npm start
 
 **Step 12. Check if KMD-Nomp is running**
 
-In a browser, type 127.0.0.1:PORT (you specified in config.json, default:8080) and the page should display. 
+In a browser, type 127.0.0.1:8080 (default:8080, you specified in config.json) and the page should display. 
 
 
 
