@@ -1,41 +1,18 @@
-# Zcash® and Zclassic - Node Open Mining Portal
+# Komodo - Node Open Mining Portal
 
 **[Click here for the official - Zcash® and Zclassic Stratum Mining Pool Installation Guide](https://zdeveloper.org/wiki:z-nomp_install)**
 
-This is a Zclassic mining pool based off of Node Open Mining Portal.
+This is a Komodo mining pool based off of Node Open Mining Portal.
 
 Donations for development are greatly appreciated!
-  * BTC: 18vHMxVzotQ9EPyESrf7Z1hNM9AwJeVHgD
-  * ZCL: zcXDWbgReztLLXSTUMT2nEumiDM6zTzUXFb7vUnx9JNfJDVqbodyxwEQwgDkFw7Dp128tBU8n8rmVxT43DshmeTEM4LHcdz
+  * BTC: 
+  * KMD: 
 
 #### Production Usage Notice
 This is beta software. All of the following are things that can change and break an existing Z-NOMP setup: functionality of any feature, structure of configuration files and structure of redis data. If you use this software in production then *DO NOT* pull new code straight into production usage because it can and often will break your setup and require you to tweak things like config files or redis data. *Only tagged releases are considered stable.*
 
-#### Paid Solution
-Usage of this software requires abilities with sysadmin, database admin, coin daemons, and sometimes a bit of programming. Running a production pool can literally be more work than a full-time job. 
-
-
-### Community / Support
-IRC
-* Support / general discussion join: https://rocketchat.zdeveloper.org
-
-If your pool uses Z-NOMP let us know and we will list your website here.
-
-### Some pools using Z-NOMP or node-stratum-module:
-http://zclmine.com/ Custom frontend with 1% of the fee going to the Zclassic donation fund!
-
-https://pool.cryptobroker.io/zcl Running MPOS and 0.5% of the fee goes to the Zclassic donation fund! 200+ blocks have been found as well! 
-
-http://zclassic.miningspeed.com Custom frontend and 0% fee
-
-http://zclassic.coin-miners.info/ and http://zdash.coin-miners.info/
-
-Usage
-=====
-
-
 #### Requirements
-* Coin daemon(s) (find the coin's repo and build latest version from source)
+* Coin daemon(s) ([https://github.com/jl777/komodo](https://github.com/jl777/komodo) and build latest version from source)
 * [Node.js](http://nodejs.org/) v7+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * [Redis](http://redis.io/) key-value store v2.6+ ([follow these instructions](http://redis.io/topics/quickstart))
 
