@@ -26,7 +26,7 @@ sudo apt-get install build-essential pkg-config libc6-dev m4 g++-multilib autoco
 git clone https://github.com/jl777/komodo
 cd komodo
 ./zcutil/fetch-params.sh
-.zcutil/build.sh -j8   (replace 8 with number of CPU threads you want to use) (this will take some time.)
+./zcutil/build.sh -j8   (replace 8 with number of CPU threads you want to use) (this will take some time.)
 ```
 
 
