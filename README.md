@@ -50,7 +50,7 @@ addnode=178.63.69.164
 addnode=88.198.65.74
 addnode=5.9.122.241
 addnode=144.76.94.38
-blocknotify=node /home/<user>/z-nomp/scripts/cli.js blocknotify komodo %s
+blocknotify=node /home/<user>/kmd-nomp/scripts/cli.js blocknotify komodo %s
 
 Ctrl+X, then Y to save. 
 ```
