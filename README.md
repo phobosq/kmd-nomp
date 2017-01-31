@@ -181,9 +181,14 @@ enabled": true,
         }
     ],
 ```
-*Please note: You must change the first 3 addresses to your personal ones. Also change RPCport, RPCusername and RPCpassword to the ones set in your komodod komodo.conf file.*
+**Address Info**
+**for address : generate a new address in komodod  --> cd komodo/src   ./komodo-cli getnewaddress**
+**for zaddress: not necessary since payment processing is disabled -- although you can generate a zaddress for kmd and input there if you'd like**
+**for taddress: not necessary since payment processing is disabled -- although you can generate a new address and input there if you'd like**
 
-*Payment Processing is set to false. This is because there are currently bugs. Also the guide is using it for local mining.*
+*Also change RPCport, RPCusername and RPCpassword to the ones set in your komodod komodo.conf file.*
+
+*Payment Processing is set to false. This is because there are currently bugs. The guide is using it for local mining.*
 
 
 
