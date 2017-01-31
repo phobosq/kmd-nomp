@@ -115,20 +115,8 @@ nano config.json
 Ctrl+X, then Y to save.
 ```
 
-**Step 9. Create KMD-Nomp Coin Config File**
-```bash
-cd coins
-nano komodo.json
 
-{
-    "name": "komodo",
-    "symbol": "KMD",
-    "algorithm": "equihash",
-    "payFoundersReward": false
-}
-```
-
-**Step 10. Create KMD-Nomp**
+**Step 9. Create KMD-Nomp**
 ```bash
 cd 
 cd kmd-nomp/pool_configs
@@ -192,14 +180,14 @@ enabled": true,
 
 
 
-**Step 11. Start KMD-Nomp**
+**Step 10. Start KMD-Nomp**
 ```bash
 cd 
 cd kmd-nomp
 npm start
 ```
 
-**Step 12. Check if KMD-Nomp is running**
+**Step 11. Check if KMD-Nomp is running**
 
 In a browser, type 127.0.0.1:8080 (default:8080, you specified in config.json) and the page should display. 
 
