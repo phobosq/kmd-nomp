@@ -130,9 +130,9 @@ nano komodo.json
 
 **Step 10. Create KMD-Nomp**
 ```bash
-cd ..
+cd 
 cd kmd-nomp/pool_configs
-cp zclassic.json komodo.json
+cp zclassic_example.json komodo.json
 nano komodo.json
 
 enabled": true,
