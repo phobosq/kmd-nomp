@@ -32,7 +32,7 @@ cd komodo
 
 **Step 4. Create and Modify komodo.conf**
 ```bash
-cd ..
+cd 
 mkdir .komodo
 cd .komodo
 nano komodo.conf
@@ -58,7 +58,7 @@ Ctrl+X, then Y to save.
 
 **Step 5. Install kmd-nomp**
 ```bash
-cd ..
+cd 
 sudo apt-get install libsodium-dev npm redis-server
 sudo npm install n -g
 sudo n stable
@@ -69,7 +69,7 @@ npm install
 ```
 *if libsodium package not found (ubuntu 14.04)*
 ```bash
-cd ..
+cd 
 git clone https://github.com/jedisct1/libsodium.git
 cd libsodium
 ./configure
@@ -81,7 +81,7 @@ sudo make install
 
 **Step 6. Restart Redis-server**
 ```bash
-cd ..
+cd 
 sudo service redis-server restart
 ```
 
@@ -101,7 +101,7 @@ var blockReward = (this.rpcData.miner) * 100000000;
 
 **Step 8. KMD-Nomp Site Config File**
 ```bash
-cd ..
+cd 
 cd kmd-nomp
 cp config_example.json config.json
 nano config.json
@@ -189,7 +189,7 @@ enabled": true,
 
 **Step 11. Start KMD-Nomp**
 ```bash
-cd ..
+cd 
 cd kmd-nomp
 npm start
 ```
