@@ -117,7 +117,7 @@ Ctrl+X, then Y to save.
 
 **Step 9. Create KMD-Nomp Coin Config File**
 ```bash
-cd kmd-nomp/coins
+cd coins
 nano komodo.json
 
 {
