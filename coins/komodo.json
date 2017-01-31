@@ -1,0 +1,6 @@
+{
+    "name": "komodo",
+    "symbol": "KMD",
+    "algorithm": "equihash",
+    "payFoundersReward": false
+}
