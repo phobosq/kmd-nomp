@@ -1,27 +1,27 @@
 {
-    "name": "z-nomp",
+    "name": "kmd-nomp",
     "version": "0.0.4",
-    "description": "Zclassic (Equihash) stratum mining pool based on NOMP",
+    "description": "Komodo (Equihash) stratum mining pool based on NOMP",
     "keywords": [
         "stratum",
         "mining",
         "pool",
         "server",
         "poolserver",
-        "zclassic",
-        "zcash",
+        "komodo",
+        "KMD",
         "equihash"
     ],
-    "homepage": "https://github.com/joshuayabut/node-open-mining-portal",
+    "homepage": "https://github.com/xRobeSx/kmd-nomp",
     "bugs": {
-        "url": "https://github.com/joshuayabut/node-open-mining-portal/issues"
+        "url": "https://github.com/xRobeSx/kmd-nomp/issues"
     },
     "license": "MIT",
-    "author": "Joshua Yabut",
+    "author": "xrobesx",
     "contributors": [
-        "Matthew Little",
-        "vekexasia",
-        "TheSeven"
+        "Metaphilibert",
+        "fhavik",
+        "Joshua Yabut"
     ],
     "main": "init.js",
     "bin": {
@@ -29,10 +29,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/joshuayabut/z-nomp.git"
+        "url": "https://github.com/xrobesx/kmd-nomp.git"
     },
     "dependencies": {
-        "stratum-pool": "git+https://github.com/joshuayabut/node-stratum-pool.git",
+        "stratum-pool": "git+https://github.com/xrobesx/kmd-nomp.git",
         "dateformat": "*",
         "node-json-minify": "*",
         "redis": "*",
