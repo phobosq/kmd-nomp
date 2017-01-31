@@ -72,8 +72,8 @@ npm install
 cd 
 git clone https://github.com/jedisct1/libsodium.git
 cd libsodium
-./configure
 ./autogen.sh
+./configure
 sudo make
 sudo make install
 ```
