@@ -114,7 +114,8 @@ module.exports = function(logger, portalConfig, poolConfigs){
                 ['hgetall', ':stats'],
                 ['scard', ':blocksPending'],
                 ['scard', ':blocksConfirmed'],
-                ['scard', ':blocksKicked']
+                ['scard', ':blocksKicked'],
+                ['hgetall', ':payouts']
             ];
 
             var commandsPerCoin = redisCommandTemplates.length;
@@ -151,7 +152,8 @@ module.exports = function(logger, portalConfig, poolConfigs){
                                 pending: replies[i + 3],
                                 confirmed: replies[i + 4],
                                 orphaned: replies[i + 5]
-                            }
+                            },
+                            payouts: replies[i + 6]
                         };
                         allCoinStats[coinStats.name] = (coinStats);
                     }
@@ -204,8 +206,15 @@ module.exports = function(logger, portalConfig, poolConfigs){
                                 hashrateString: null
                             };
                     }
-                });
-
+                }});
+               	var payoutsOrdered = {};
+		        Object.keys(coinStats.payouts).sort(function (a, b) {
+		            return -(coinStats.payouts[a] - coinStats.payouts[b]);
+		        }).forEach(function (i) {
+		            payoutsOrdered[i] = coinStats.payouts[i];
+		        });
+		        coinStats.payouts = payoutsOrdered;
+                
                 var shareMultiplier = Math.pow(2, 32) / algos[coinStats.algorithm].multiplier;
                 coinStats.hashrate = shareMultiplier * coinStats.shares / portalConfig.website.stats.hashrateWindow;
 
