@@ -47,13 +47,19 @@
                     <th>Payout received</th>
                 </tr>
                 </thead>
+                {{ var totalPayout = 0; }}
                 {{ for(var worker in it.stats.pools[pool].payouts) { }}
                    {{var workerstat = it.stats.pools[pool].payouts[worker];}}
                     <tr class="pure-table-odd">
                         <td>{{=worker}}</td> 
                         <td>{{=Math.round(workerstat * 10000) / 10000}}</td>
+			            {{ totalPayout += Math.round(workerstat * 10000) / 10000; }}
                     </tr>
                 {{ } }}
+		        <tr>
+		            <td>Total payout:</td>
+		            <td>{{=totalPayout}}</td>
+		        </tr>
             </table>
         </div>
     </div>
