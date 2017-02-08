@@ -41,7 +41,8 @@ module.exports = function(logger){
         'workers.html': 'workers',
         'api.html': 'api',
         'admin.html': 'admin',
-        'mining_key.html': 'mining_key'
+        'mining_key.html': 'mining_key',
+        'payouts.html': 'payouts'
     };
 
     var pageTemplates = {};
